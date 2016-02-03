@@ -8,8 +8,4 @@ module.exports = {
   mongo: {
     uri: 'mongodb://localhost/wysiwygmeaneditor-dev'
   },
-
-  // Seed database on startup
-  seedDB: true
-
 };
