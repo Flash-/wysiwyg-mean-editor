@@ -1,18 +1,13 @@
 'use strict';
 
-class NavbarController {
-  //start-non-standard
-  menu = [{
+var NavbarController = function ($scope) {
+  $scope.menu = [{
     'title': 'Home',
     'state': 'main'
   }];
 
-  isCollapsed = true;
-  //end-non-standard
-
-  constructor() {
-    }
-}
+  $scope.isCollapsed = true;
+};
 
 angular.module('wysiwygMeanEditorApp')
   .controller('NavbarController', NavbarController);

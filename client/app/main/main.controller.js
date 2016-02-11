@@ -1,29 +1,25 @@
 'use strict';
 
-(function() {
+(function () {
 
-class MainController {
+var MainController = function ($scope, $http) {
 
-  constructor($http) {
-    this.$http = $http;
-    this.awesomeThings = [];
+  $scope.awesomeThings = [];
+  $http.get('/api/things').then(response => {
+    $scope.awesomeThings = response.data;
+  });
 
-    $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-    });
-  }
-
-  addThing() {
-    if (this.newThing) {
-      this.$http.post('/api/things', { name: this.newThing });
-      this.newThing = '';
+  function addThing() {
+    if ($scope.newThing) {
+      $http.post('/api/things', { name: $scope.newThing });
+      $scope.newThing = '';
     }
   }
 
-  deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
+  function deleteThing(thing) {
+    $http.delete('/api/things/' + thing._id);
   }
-}
+};
 
 angular.module('wysiwygMeanEditorApp')
   .controller('MainController', MainController);
